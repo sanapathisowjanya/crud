@@ -1,0 +1,44 @@
+<h2>Accounts</h2>
+
+<table>
+  <tr>
+    <th>Account Number</th>
+    <th>Account Holder</th>
+    <th>Balance</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let account of accounts">
+    <td>{{ account.accountNumber }}</td>
+    <td>{{ account.accountHolderName }}</td>
+    <td>{{ account.balance }}</td>
+    <td>
+      <button (click)="deleteAccount(account.id)">Delete</button>
+    </td>
+    <td>
+      <button (click)="editAccount(account)">Edit</button>
+    </td>
+  </tr>
+</table>
+
+<h3>{{ isEditing ? 'Edit Account' : 'Add Account' }}</h3>
+
+<div>
+  <label>Account Number:</label>
+  <input [(ngModel)]="newAccount.accountNumber" type="text">
+</div>
+<div>
+  <label>Account Holder Name:</label>
+  <input [(ngModel)]="newAccount.accountHolderName" type="text">
+</div>
+<div>
+  <label>Balance:</label>
+  <input [(ngModel)]="newAccount.balance" type="number">
+</div>
+
+
+<div>
+  <button *ngIf="!isEditing" (click)="addAccount()">Add</button>
+  <button *ngIf="isEditing" (click)="updateAccount()">Update</button>
+  <button *ngIf="isEditing" (click)="cancelEdit()">Cancel</button>
+</div>
